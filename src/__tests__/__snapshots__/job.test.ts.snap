@@ -1,0 +1,39 @@
+// Vitest Snapshot v1
+
+exports[`Job > should create a job 1`] = `
+{
+  "container": undefined,
+  "continue-on-error": true,
+  "defaults": undefined,
+  "env": undefined,
+  "id": undefined,
+  "if": undefined,
+  "name": undefined,
+  "needs": undefined,
+  "outputs": undefined,
+  "runs-on": "ubuntu-latest",
+  "services": undefined,
+  "steps": [
+    {
+      "continue-on-error": false,
+      "name": "step",
+      "timeout-minutes": 5,
+      "working-directory": "~/",
+    },
+    {
+      "name": "External action",
+      "uses": "actions/checkout@v2",
+      "with": {
+        "booleanValue": false,
+        "numberValue": 10,
+        "stringValue": "string",
+      },
+    },
+  ],
+  "strategy": {
+    "fail-fast": true,
+    "max-parallel": 11,
+  },
+  "timeout-minutes": 10,
+}
+`;

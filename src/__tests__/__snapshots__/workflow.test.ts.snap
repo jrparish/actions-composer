@@ -1,0 +1,32 @@
+// Vitest Snapshot v1
+
+exports[`Workflow > should map properties to correct action syntax 1`] = `
+{
+  "defaults": {
+    "run": {
+      "working-directory": "~/",
+    },
+  },
+  "env": undefined,
+  "jobs": {},
+  "name": "Test",
+  "on": {
+    "issue_comment": {
+      "types": [
+        "created",
+      ],
+    },
+    "pull_request": {
+      "paths": [
+        "test/",
+      ],
+      "paths-ignore": [
+        "ignore-path/",
+      ],
+      "types": [
+        "opened",
+      ],
+    },
+  },
+}
+`;
