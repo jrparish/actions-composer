@@ -4,7 +4,7 @@ import { Job } from '../job';
 
 describe('Job', () => {
   it('should create a job', () => {
-    const job = new Job({
+    const job = new Job('jobKey', {
       runsOn: 'ubuntu-latest',
       continueOnError: true,
       timeoutMinutes: 10,
@@ -30,6 +30,6 @@ describe('Job', () => {
         }
       ]
     });
-    expect(job).toMatchSnapshot();
+    expect(job.toAction()).toMatchSnapshot();
   });
 });

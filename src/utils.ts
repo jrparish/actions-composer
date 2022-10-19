@@ -5,7 +5,7 @@ import { StringMap } from './types';
  * @param obj Object to rename
  * @param newKeys A dictionary of old to new key names
  */
-export const renameKeys = (obj: any, newKeys: StringMap) => {
+export function renameKeys(obj: any, newKeys: StringMap) {
   if (typeof obj !== 'object') {
     return obj;
   }
@@ -21,7 +21,8 @@ export const renameKeys = (obj: any, newKeys: StringMap) => {
     return { [newKey]: newValue };
   });
   return Object.assign({}, ...keyValues);
-};
+}
 
-export const camelToSnake = (str: string) =>
-  str.replace(/[A-Z]/g, group => `_${group.toLowerCase()}`);
+export function camelToSnake(str: string) {
+  return str.replace(/[A-Z]/g, group => `_${group.toLowerCase()}`);
+}

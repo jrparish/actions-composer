@@ -121,6 +121,8 @@ export interface StrategyProps {
   readonly maxParallel?: number;
 }
 
+export type JobConfig = Omit<Job, 'id' | 'toAction'>;
+
 /**
  * Configuration for a single GitHub Action job.
  */
@@ -190,17 +192,26 @@ export class Job {
    */
   readonly services?: { [key: string]: DockerProps };
 
-  constructor(config: Job) {
-    Object.assign(
-      this,
-      renameKeys(config, {
+  /**
+   * id to be used for the job in the action file
+   */
+  readonly id: string;
+
+  constructor(id: string, config: JobConfig) {
+    Object.assign(this, { id }, config);
+  }
+
+  toAction() {
+    return {
+      ...renameKeys(this, {
         runsOn: 'runs-on',
         continueOnError: 'continue-on-error',
         timeoutMinutes: 'timeout-minutes',
         fastFail: 'fail-fast',
         maxParallel: 'max-parallel',
         workingDirectory: 'working-directory'
-      })
-    );
+      }),
+      id: undefined
+    };
   }
 }

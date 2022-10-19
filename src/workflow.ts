@@ -392,6 +392,8 @@ export interface EventMap {
  */
 export type Events = keyof EventMap | EventStrings;
 
+export type WorkflowConfig = Omit<Workflow, 'toAction'>;
+
 /**
  * Configuration for a single GitHub Action workflow.
  */
@@ -416,10 +418,17 @@ export class Workflow {
    */
   readonly defaults?: DefaultsProps;
 
+  /**
+   * List of jobs to include in the workflow
+   */
   readonly jobs: Job[];
 
-  constructor(config: Workflow) {
-    const workflow = renameKeys(config, {
+  constructor(config: WorkflowConfig) {
+    Object.assign(this, config);
+  }
+
+  toAction() {
+    const workflow = renameKeys(this, {
       branchesIgnore: 'branches-ignore',
       tagsIgnore: 'tags-ignore',
       pathsIgnore: 'paths-ignore',
@@ -441,6 +450,15 @@ export class Workflow {
     if (Array.isArray(workflow.on)) {
       workflow.on = workflow.on.map(camelToSnake);
     }
-    Object.assign(this, workflow);
+    workflow.jobs = this.jobs.reduce((memo, job) => {
+      if (job.toAction) {
+        return {
+          ...memo,
+          [job.id]: job.toAction()
+        };
+      }
+      return memo;
+    }, {});
+    return workflow;
   }
 }

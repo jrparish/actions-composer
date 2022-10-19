@@ -17,6 +17,7 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc",
+    "test": "vitest",
     "typecheck": "tsc --noEmit",
     "lint": "eslint",
     "postinstall": "husky install",
