@@ -6,7 +6,6 @@ exports[`Job > should create a job 1`] = `
   "continue-on-error": true,
   "defaults": undefined,
   "env": undefined,
-  "id": undefined,
   "if": undefined,
   "name": undefined,
   "needs": undefined,
