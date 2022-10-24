@@ -5,7 +5,7 @@ import { Workflow } from '../workflow';
 
 describe('Workflow', () => {
   it('should map properties to correct action syntax', () => {
-    const workflow = new Workflow({
+    const workflow = new Workflow('test', {
       name: 'Test',
       on: {
         pullRequest: {
@@ -26,12 +26,12 @@ describe('Workflow', () => {
   });
 
   it('on: string snake conversion', () => {
-    const workflow = new Workflow({ name: 'Test', on: 'pullRequest', jobs: [] });
+    const workflow = new Workflow('test', { name: 'Test', on: 'pullRequest', jobs: [] });
     expect(workflow.toAction().on).toBe('pull_request');
   });
 
   it('on: string[] snake conversion', () => {
-    const workflow = new Workflow({
+    const workflow = new Workflow('test', {
       name: 'Test',
       on: ['pullRequest', 'push', 'issueComment'],
       jobs: []
@@ -42,7 +42,7 @@ describe('Workflow', () => {
 
   it('should not allow duplicate job keys', () => {
     const jobKey = 'duplicatKey';
-    const workflow = new Workflow({
+    const workflow = new Workflow('test', {
       name: 'Test',
       on: [],
       jobs: [
@@ -71,7 +71,7 @@ describe('Workflow', () => {
     const jobTwo = 'job_two';
     const jobThree = 'job_three';
 
-    const workflow = new Workflow({
+    const workflow = new Workflow('test', {
       name: 'Test',
       on: [],
       jobs: [
@@ -96,7 +96,7 @@ describe('Workflow', () => {
   });
 
   it('should ignore jobs that are note propery created', () => {
-    const workflow = new Workflow({
+    const workflow = new Workflow('test', {
       name: 'Test',
       on: [],
       // @ts-expect-error - intentional for test
