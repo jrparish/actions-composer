@@ -10,8 +10,10 @@
     }
   },
   "files": [
+    "bin",
     "lib"
   ],
+  "bin": "./bin/actions-composer.js",
   "repository": "git@github.com:jrparish/actions-composer.git",
   "author": "Jacob Parish <jacob.parish.1@gmail.com>",
   "license": "MIT",
@@ -24,11 +26,15 @@
     "prepack": "pinst --disable",
     "postpack": "pinst --enable"
   },
+  "dependencies": {
+    "js-yaml": "^4.1.0"
+  },
   "devDependencies": {
     "@commitlint/cli": "^17.1.2",
     "@commitlint/config-conventional": "^17.1.0",
     "@d3banking/eslint-config": "^22.11.0",
     "@d3banking/prettier-config": "^2.1.4",
+    "@types/js-yaml": "^4.0.5",
     "eslint": "^8.25.0",
     "husky": "^8.0.1",
     "pinst": "^3.0.0",

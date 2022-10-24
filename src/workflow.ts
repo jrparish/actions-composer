@@ -392,7 +392,7 @@ export interface EventMap {
  */
 export type Events = keyof EventMap | EventStrings;
 
-export type WorkflowConfig = Omit<Workflow, 'toAction'>;
+export type WorkflowConfig = Omit<Workflow, 'id' | 'toAction'>;
 
 /**
  * Configuration for a single GitHub Action workflow.
@@ -423,8 +423,13 @@ export class Workflow {
    */
   readonly jobs: Job[];
 
-  constructor(config: WorkflowConfig) {
-    Object.assign(this, config);
+  /**
+   * id to be used as the workflow action file name
+   */
+  readonly id: string;
+
+  constructor(id: string, config: WorkflowConfig) {
+    Object.assign(this, { id }, config);
   }
 
   toAction() {
@@ -459,6 +464,7 @@ export class Workflow {
       }
       return memo;
     }, {});
+    delete workflow.id;
     return workflow;
   }
 }

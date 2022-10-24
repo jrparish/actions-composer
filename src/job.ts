@@ -202,16 +202,15 @@ export class Job {
   }
 
   toAction() {
-    return {
-      ...renameKeys(this, {
-        runsOn: 'runs-on',
-        continueOnError: 'continue-on-error',
-        timeoutMinutes: 'timeout-minutes',
-        fastFail: 'fail-fast',
-        maxParallel: 'max-parallel',
-        workingDirectory: 'working-directory'
-      }),
-      id: undefined
-    };
+    const job = renameKeys(this, {
+      runsOn: 'runs-on',
+      continueOnError: 'continue-on-error',
+      timeoutMinutes: 'timeout-minutes',
+      fastFail: 'fail-fast',
+      maxParallel: 'max-parallel',
+      workingDirectory: 'working-directory'
+    });
+    delete job.id;
+    return job;
   }
 }
