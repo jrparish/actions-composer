@@ -13,6 +13,13 @@ It is designed simply to assist in creating strongly typed, composable github ac
 
 If there are any suggestions for imporovements, please feel free to open an issue or PR with changes.
 
+## Installation
+
+```
+yarn add -D actions-composer
+npm i actions-composer --save-dev
+```
+
 ## Usage
 
 - Generated workflows will be placed in the standard `.github/workflows` directory.
